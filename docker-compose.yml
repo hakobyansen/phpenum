@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  phpfpm:
+    image: adhocore/phpfpm:8.0
+    container_name: phpenum
+    ports:
+      - 9001:9001
+    working_dir: /home
+    volumes:
+      - .:/home
