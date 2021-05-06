@@ -1,5 +1,5 @@
 {
-    "name": "mastermind/phpenum",
+    "name": "codebot/phpenum",
     "description": "Enum helper, that will help you to define Enum types easily by defining just constants.",
     "type": "library",
     "require-dev": {
