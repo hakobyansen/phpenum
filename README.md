@@ -38,3 +38,17 @@ $status->toArray(); // will return [ 'active' => 'active', 'inactive' => 'inacti
 $status->hasValue('active'); // will return boolean
 $status->hasKey('blocked'); // will return boolean
 ```
+
+Enum constructor has 2 parameters: `$caseLower=true` and `$caseUpper=false`.
+
+If you want the case of array keys to be same as constants case - pass `false` as `$caseLower`.
+
+```php
+$status = new Status(false);
+```
+
+If you want the case of array keys to be uppercase - pass `false` as `$caseLower` and `true` as `$caseUpper`. 
+
+```php
+$status = new Status(false, true);
+```
