@@ -1,3 +1,6 @@
+## 0.1.2 2021-05-07
+* Added `$caseLower` and `$caseUpper` boolean parameters to Enum class constructor.
+
 ## 0.1.1 2021-05-06
 * Renamed the composer package.
 

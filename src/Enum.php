@@ -3,6 +3,7 @@
 namespace Enum;
 
 use Enum\Helpers\ReflectionHelper;
+use JetBrains\PhpStorm\Pure;
 
 abstract class Enum
 {
@@ -12,18 +13,26 @@ abstract class Enum
     private ReflectionHelper $reflection;
 
     /**
-     * @var array
+     * @var bool
      */
-    private array $preferences;
+    private bool $caseLower;
+
+    /**
+     * @var bool
+     */
+    private bool $caseUpper;
 
     /**
      * Enum constructor.
-     * @param array $preferences
+     * @param bool $caseLower
+     * @param bool $caseUpper
      */
-    public function __construct(array $preferences = [])
+    #[Pure]
+    public function __construct(bool $caseLower = true, bool $caseUpper = false)
     {
         $this->reflection = new ReflectionHelper($this);
-        $this->preferences = $preferences;
+        $this->caseLower  = $caseLower;
+        $this->caseUpper  = $caseUpper;
     }
 
     /**
@@ -31,12 +40,9 @@ abstract class Enum
      */
     public function toArray(): array
     {
-        $lowKeys = $this->preferences['case_lower'] ?? true;
-        $upKeys = $this->preferences['case_upper'] ?? false;
-
-        if($lowKeys) {
+        if($this->caseLower) {
             return array_change_key_case($this->reflection->getConstants(), CASE_LOWER);
-        } elseif ($upKeys) {
+        } elseif ($this->caseUpper) {
             return array_change_key_case($this->reflection->getConstants(), CASE_UPPER);
         } else {
             return $this->reflection->getConstants();
